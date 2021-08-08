@@ -5,13 +5,14 @@ import Sidebar from '../../components/sidebar/Sidebar'
 import axios from 'axios'
 import './homepage.css'
 import { useLocation } from 'react-router'
+import instance from './../../baseUrl'
 
 export default function Homepage() {
   const [posts, setPosts] = useState([])
   const { search } = useLocation()
 
   async function fetchPosts() {
-    const res = await axios.get('/posts/' + search)
+    const res = await instance.get('/posts/' + search)
     setPosts(res.data)
   }
 
