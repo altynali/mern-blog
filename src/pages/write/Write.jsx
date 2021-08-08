@@ -9,7 +9,6 @@ export default function Write() {
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
   const [file, setFile] = useState()
-  const [filename, setFilename] = useState('')
 
   const [cats, setCats] = useState([])
   const finalCats = []
