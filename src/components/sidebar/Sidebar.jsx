@@ -8,7 +8,7 @@ export default function Sidebar() {
   const [cats, setCats] = useState([])
 
   const getCats = async () => {
-    const res = await axios.get('/categories')
+    const res = await axios.get('/categories/')
     setCats(res.data)
   }
 
