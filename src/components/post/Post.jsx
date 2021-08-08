@@ -4,7 +4,6 @@ import noImgPost from '../../images/noImgPost.jpg'
 import { Image } from 'cloudinary-react'
 
 export default function Post({ post }) {
-  const PF = 'https://safe-dawn-28691.herokuapp.com/images/'
   return (
     <div className='post'>
       <div className='postInfo'>
