@@ -51,7 +51,13 @@ export default function Topbar() {
                 user?.profilePic === '' ? (
                   noImgUser
                 ) : (
-                  <Image public_id={user.profilePic} />
+                  <Image
+                    cloudName='mern-blog-altynali'
+                    public_id={user.profilePic}
+                    width='100'
+                    height='100'
+                    crop='scale'
+                  />
                 )
               }
               alt=''
