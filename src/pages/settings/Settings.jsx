@@ -82,19 +82,20 @@ export default function Settings() {
           <div className='settingsPP'>
             <img
               src={
-                file ? (
-                  URL.createObjectURL(file)
-                ) : user.profilePic === '' ? (
-                  noImgUser
-                ) : (
-                  <Image
-                    cloudName='mern-blog-altynali'
-                    public_id={user.profilePic}
-                    width='100'
-                    height='100'
-                    crop='scale'
-                  />
-                )
+                file
+                  ? URL.createObjectURL(file)
+                  : user.profilePic === ''
+                  ? noImgUser
+                  : noImgUser
+                //     (
+                //   <Image
+                //     cloudName='mern-blog-altynali'
+                //     public_id={user.profilePic}
+                //     width='100'
+                //     height='100'
+                //     crop='scale'
+                //   />
+                // )
               }
               alt=''
             />

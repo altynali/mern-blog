@@ -4,7 +4,6 @@ import { useContext } from 'react'
 import './topbar.css'
 import { logout } from '../../context/Actions'
 import noImgUser from '../../images/noImgUser.jpg'
-import { Image } from 'cloudinary'
 
 export default function Topbar() {
   const { user, dispatch } = useContext(Context)
@@ -45,23 +44,7 @@ export default function Topbar() {
       <div className='topRight'>
         {user ? (
           <Link className='link' to='/settings'>
-            <img
-              className='topImg'
-              src={
-                user?.profilePic === '' ? (
-                  noImgUser
-                ) : (
-                  <Image
-                    cloudName='mern-blog-altynali'
-                    public_id={user.profilePic}
-                    width='100'
-                    height='100'
-                    crop='scale'
-                  />
-                )
-              }
-              alt=''
-            />
+            <img className='topImg' src={noImgUser} alt='' />
           </Link>
         ) : (
           <ul className='topList'>
