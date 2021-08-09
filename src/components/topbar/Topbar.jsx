@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import './topbar.css'
 import { logout } from '../../context/Actions'
 import noImgUser from '../../images/noImgUser.jpg'
+import { Image } from 'cloudinary'
 
 export default function Topbar() {
   const { user, dispatch } = useContext(Context)
@@ -46,7 +47,13 @@ export default function Topbar() {
           <Link className='link' to='/settings'>
             <img
               className='topImg'
-              src={user?.profilePic === '' ? noImgUser : PF + user.profilePic}
+              src={
+                user?.profilePic === '' ? (
+                  noImgUser
+                ) : (
+                  <Image public_id={user.profilePic} />
+                )
+              }
               alt=''
             />
           </Link>

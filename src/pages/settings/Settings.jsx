@@ -30,22 +30,30 @@ export default function Settings() {
       email,
       password,
     }
+
     if (file) {
       const data = new FormData()
-      const filename = Date.now() + file.name
-      data.append('name', filename)
       data.append('file', file)
-      updatedUser.profilePic = filename
-      try {
-        await axios.post('/upload', data)
-      } catch (err) {}
-    }
-    try {
-      const res = await axios.put('/users/' + user._id, updatedUser)
-      setSuccess(true)
-      dispatch(updateSuccess(res.data))
-    } catch (err) {
-      dispatch(updateFail())
+      data.append('upload_preset', 'ml_default')
+
+      axios
+        .post(
+          'https://api.cloudinary.com/v1_1/mern-blog-altynali/image/upload',
+          data
+        )
+        .then((res) => {
+          updatedUser.profilePic = res.data.public_id
+
+          if (updatedUser.profilePic) {
+            try {
+              const res = await axios.put('/users/' + user._id, updatedUser)
+              setSuccess(true)
+              dispatch(updateSuccess(res.data))
+            } catch (err) {
+              dispatch(updateFail())
+            }
+          }
+        })
     }
   }
 
@@ -72,11 +80,13 @@ export default function Settings() {
           <div className='settingsPP'>
             <img
               src={
-                file
-                  ? URL.createObjectURL(file)
-                  : user.profilePic === ''
-                  ? noImgUser
-                  : PF + user.profilePic
+                file ? (
+                  URL.createObjectURL(file)
+                ) : user.profilePic === '' ? (
+                  noImgUser
+                ) : (
+                  <Image public_id={user.profilePic} />
+                )
               }
               alt=''
             />
