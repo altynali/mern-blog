@@ -46,9 +46,10 @@ export default function Settings() {
 
           if (updatedUser.profilePic) {
             try {
-              const res = await axios.put('/users/' + user._id, updatedUser)
-              setSuccess(true)
-              dispatch(updateSuccess(res.data))
+              axios.put('/users/' + user._id, updatedUser).then((res) => {
+                setSuccess(true)
+                dispatch(updateSuccess(res.data))
+              })
             } catch (err) {
               dispatch(updateFail())
             }
