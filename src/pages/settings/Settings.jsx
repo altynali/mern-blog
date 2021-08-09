@@ -9,6 +9,7 @@ import {
   updateFail,
   logout,
 } from '../../context/Actions'
+import { Image } from 'cloudinary'
 import noImgUser from '../../images/noImgUser.jpg'
 
 export default function Settings() {
